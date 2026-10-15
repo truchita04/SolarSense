@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SolarSense | Solar Power Intelligence</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="header-content">
+
+            <div>
+                <h1>☀️ SolarSense</h1>
+
+                <p>
+                    Solar Power Forecasting & Anomaly Detection System
+                </p>
+            </div>
+
+            <div class="status-badge">
+                ● SYSTEM ONLINE
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main class="container">
+
+        <!-- INTRO -->
+        <section class="hero">
+
+            <h2>Solar Energy Intelligence Dashboard</h2>
+
+            <p>
+                SolarSense uses Machine Learning to forecast solar
+                power generation and identify potential abnormal
+                operating conditions.
+            </p>
+
+        </section>
+
+
+        <!-- PREDICTION + ANOMALY -->
+        <section class="dashboard-grid">
+
+
+            <!-- PREDICTION -->
+            <div class="card">
+
+                <div class="card-title">
+
+                    <span>⚡</span>
+
+                    <h2>Solar Power Prediction</h2>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="input-group">
+
+                        <label>Irradiance (W/m²)</label>
+
+                        <input
+                            type="number"
+                            id="irradiance"
+                            value="500"
+                            min="0"
+                            step="0.1"
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>Ambient Temperature (°C)</label>
+
+                        <input
+                            type="number"
+                            id="ambient_temperature"
+                            value="25"
+                            step="0.1"
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>Module Temperature (°C)</label>
+
+                        <input
+                            type="number"
+                            id="module_temperature"
+                            value="35"
+                            step="0.1"
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>Hour</label>
+
+                        <input
+                            type="number"
+                            id="hour"
+                            value="12"
+                            min="0"
+                            max="23"
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>Minute</label>
+
+                        <input
+                            type="number"
+                            id="minute"
+                            value="0"
+                            min="0"
+                            max="59"
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>Day</label>
+
+                        <input
+                            type="number"
+                            id="day"
+                            value="15"
+                            min="1"
+                            max="31"
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>Month</label>
+
+                        <input
+                            type="number"
+                            id="month"
+                            value="6"
+                            min="1"
+                            max="12"
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>Day of Week</label>
+
+                        <input
+                            type="number"
+                            id="day_of_week"
+                            value="2"
+                            min="0"
+                            max="6"
+                        >
+
+                        <small>
+                            0 = Monday, 6 = Sunday
+                        </small>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>Previous Power (kW)</label>
+
+                        <input
+                            type="number"
+                            id="lag_power"
+                            value="100"
+                            min="0"
+                            step="0.1"
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label>Previous Average Power (kW)</label>
+
+                        <input
+                            type="number"
+                            id="rolling_power"
+                            value="100"
+                            min="0"
+                            step="0.1"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    onclick="predictPower()"
+                >
+                    ⚡ Predict Solar Power
+                </button>
+
+
+                <div class="result-box">
+
+                    <span class="result-label">
+                        Predicted Solar Power
+                    </span>
+
+                    <div id="predictionResult">
+                        -- kW
+                    </div>
+
+                    <span id="predictionModel">
+                        Random Forest
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ANOMALY -->
+            <div class="card">
+
+                <div class="card-title">
+
+                    <span>🔍</span>
+
+                    <h2>Anomaly Detection</h2>
+
+                </div>
+
+
+                <p class="card-description">
+
+                    Check the current operating conditions
+                    for potential abnormal behavior.
+
+                </p>
+
+
+                <div class="input-group">
+
+                    <label>
+                        Current/Previous Power (kW)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="fault_power"
+                        value="100"
+                        min="0"
+                        step="0.1"
+                    >
+
+                </div>
+
+
+                <button
+                    class="warning-button"
+                    onclick="detectFault()"
+                >
+                    🔍 Detect Anomaly
+                </button>
+
+
+                <div
+                    class="status-box"
+                    id="faultResult"
+                >
+
+                    <div class="status-icon">
+                        🟢
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            System Ready
+                        </strong>
+
+                        <p>
+                            Click the button to analyze
+                            the operating condition.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="score-box">
+
+                    <span>
+                        Anomaly Score
+                    </span>
+
+                    <strong id="anomalyScore">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACTUAL VS PREDICTED -->
+        <section class="card chart-card">
+
+            <div class="card-title">
+
+                <span>📈</span>
+
+                <div>
+
+                    <h2>
+                        Actual vs Predicted Solar Power
+                    </h2>
+
+                    <p class="subtitle">
+                        Random Forest performance on test data
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="chart-container">
+
+                <canvas id="predictionChart"></canvas>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEATURE IMPORTANCE -->
+        <section class="card chart-card">
+
+            <div class="card-title">
+
+                <span>🎯</span>
+
+                <div>
+
+                    <h2>
+                        Feature Importance
+                    </h2>
+
+                    <p class="subtitle">
+                        Factors influencing Random Forest predictions
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="chart-container feature-chart">
+
+                <canvas id="featureImportanceChart"></canvas>
+
+            </div>
+
+        </section>
+
+
+        <!-- MODEL PERFORMANCE -->
+        <section class="card">
+
+            <div class="card-title">
+
+                <span>🤖</span>
+
+                <div>
+
+                    <h2>
+                        Machine Learning Model Performance
+                    </h2>
+
+                    <p class="subtitle">
+                        Comparison of trained regression models
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Model</th>
+                            <th>MAE</th>
+                            <th>RMSE</th>
+                            <th>R² Score</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                Linear Regression
+                            </td>
+
+                            <td>
+                                23.9867
+                            </td>
+
+                            <td>
+                                53.0029
+                            </td>
+
+                            <td>
+                                0.9820
+                            </td>
+
+                        </tr>
+
+
+                        <tr class="best-model">
+
+                            <td>
+                                ⭐ Random Forest
+                            </td>
+
+                            <td>
+                                12.8316
+                            </td>
+
+                            <td>
+                                37.7222
+                            </td>
+
+                            <td>
+                                0.9909
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                XGBoost
+                            </td>
+
+                            <td>
+                                14.7514
+                            </td>
+
+                            <td>
+                                39.2492
+                            </td>
+
+                            <td>
+                                0.9901
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div class="best-model-message">
+
+                <strong>
+                    🏆 Best Model: Random Forest
+                </strong>
+
+                <span>
+                    R² = 0.9909
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- ANOMALY STATISTICS -->
+        <section class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📊
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Observations
+                    </span>
+
+                    <strong>
+                        68,686
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🟢
+                </div>
+
+                <div>
+
+                    <span>
+                        Normal Observations
+                    </span>
+
+                    <strong>
+                        67,312
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ⚠️
+                </div>
+
+                <div>
+
+                    <span>
+                        Potential Anomalies
+                    </span>
+
+                    <strong>
+                        1,374
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📈
+                </div>
+
+                <div>
+
+                    <span>
+                        Anomaly Rate
+                    </span>
+
+                    <strong>
+                        2.00%
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ABOUT -->
+        <section class="card about-card">
+
+            <div class="card-title">
+
+                <span>☀️</span>
+
+                <h2>
+                    About SolarSense
+                </h2>
+
+            </div>
+
+
+            <p>
+
+                SolarSense is a Machine Learning based solar
+                energy monitoring and prediction system.
+
+                The system uses environmental, temporal and
+                historical power features to forecast solar
+                power generation.
+
+            </p>
+
+
+            <div class="technology-grid">
+
+                <div>
+                    <strong>Forecasting</strong>
+                    <span>Random Forest</span>
+                </div>
+
+                <div>
+                    <strong>Comparison</strong>
+                    <span>Linear Regression + XGBoost</span>
+                </div>
+
+                <div>
+                    <strong>Anomaly Detection</strong>
+                    <span>Isolation Forest</span>
+                </div>
+
+                <div>
+                    <strong>Backend</strong>
+                    <span>FastAPI</span>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            SolarSense © 2026 | Machine Learning Project
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

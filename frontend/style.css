@@ -1,0 +1,474 @@
+/* =========================================================
+   SOLARSENSE - MAIN STYLESHEET
+   ========================================================= */
+
+/* ---------- Global ---------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f8f5;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+/* ---------- Header ---------- */
+
+header {
+    background: linear-gradient(135deg, #0f5132, #198754);
+    color: white;
+    padding: 22px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    background: #7cff9b;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px rgba(124, 255, 155, 0.8);
+}
+
+/* ---------- Main Container ---------- */
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ---------- Hero / Intro ---------- */
+
+.hero {
+    text-align: center;
+    padding: 45px 20px 30px;
+}
+
+.hero h1 {
+    font-size: 38px;
+    color: #0f5132;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    max-width: 800px;
+    margin: 0 auto;
+    color: #64748b;
+    font-size: 17px;
+}
+
+/* ---------- Cards ---------- */
+
+.card {
+    background: white;
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 5px 20px rgba(15, 81, 50, 0.08);
+    border: 1px solid #e4eee7;
+}
+
+.card h2 {
+    color: #0f5132;
+    margin-bottom: 8px;
+    font-size: 24px;
+}
+
+.card-description {
+    color: #64748b;
+    margin-bottom: 24px;
+}
+
+/* ---------- Form Grid ---------- */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 7px;
+    color: #374151;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    background: #ffffff;
+    transition: 0.2s ease;
+}
+
+.form-group input:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.12);
+}
+
+/* ---------- Buttons ---------- */
+
+.button-group {
+    display: flex;
+    gap: 14px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+button {
+    border: none;
+    border-radius: 8px;
+    padding: 13px 22px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.primary-btn {
+    background: #198754;
+    color: white;
+}
+
+.primary-btn:hover {
+    background: #146c43;
+    transform: translateY(-1px);
+}
+
+.secondary-btn {
+    background: #0f5132;
+    color: white;
+}
+
+.secondary-btn:hover {
+    background: #0b3d26;
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* ---------- Results ---------- */
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.result-card {
+    background: #f8fbf9;
+    border: 1px solid #dcebe1;
+    border-radius: 12px;
+    padding: 22px;
+    text-align: center;
+}
+
+.result-card h3 {
+    color: #64748b;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.result-value {
+    font-size: 30px;
+    font-weight: bold;
+    color: #198754;
+}
+
+.result-unit {
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* ---------- Status Messages ---------- */
+
+.message {
+    margin-top: 18px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    display: none;
+    font-size: 14px;
+}
+
+.message.success {
+    display: block;
+    background: #e8f7ee;
+    color: #146c43;
+    border: 1px solid #b9e3c9;
+}
+
+.message.error {
+    display: block;
+    background: #fff1f2;
+    color: #b42318;
+    border: 1px solid #fecdd3;
+}
+
+/* ---------- Charts ---------- */
+
+.chart-card {
+    overflow: hidden;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    margin-top: 20px;
+}
+
+.feature-chart {
+    height: 500px;
+}
+
+.chart-card canvas {
+    max-width: 100%;
+}
+
+/* ---------- Tables ---------- */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+    background: white;
+}
+
+thead {
+    background: #0f5132;
+    color: white;
+}
+
+th,
+td {
+    padding: 13px 15px;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+    font-size: 14px;
+}
+
+td {
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background: #f4faf6;
+}
+
+/* ---------- Best Model Highlight ---------- */
+
+.best-model {
+    font-weight: bold;
+    color: #198754;
+}
+
+/* ---------- Anomaly Section ---------- */
+
+.anomaly-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.anomaly-card {
+    background: #f8fbf9;
+    border: 1px solid #dcebe1;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+}
+
+.anomaly-card h3 {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 8px;
+}
+
+.anomaly-card .value {
+    font-size: 27px;
+    font-weight: bold;
+    color: #0f5132;
+}
+
+/* ---------- About Section ---------- */
+
+.about-list {
+    margin-top: 15px;
+    padding-left: 22px;
+}
+
+.about-list li {
+    margin-bottom: 8px;
+    color: #475569;
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+    background: #0f5132;
+    color: white;
+    text-align: center;
+    padding: 25px 20px;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+/* ---------- Loading ---------- */
+
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* ---------- Responsive Design ---------- */
+
+@media (max-width: 900px) {
+
+    .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .anomaly-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 18px 5%;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .status {
+        font-size: 12px;
+    }
+
+    .container {
+        width: 94%;
+    }
+
+    .hero {
+        padding: 30px 10px 20px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .anomaly-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .chart-container {
+        height: 350px;
+    }
+
+    .feature-chart {
+        height: 600px;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        font-size: 13px;
+    }
+}
+
+/* ---------- Small Screen Improvements ---------- */
+
+@media (max-width: 400px) {
+
+    .hero h1 {
+        font-size: 24px;
+    }
+
+    .card h2 {
+        font-size: 20px;
+    }
+
+    .result-value {
+        font-size: 25px;
+    }
+}
