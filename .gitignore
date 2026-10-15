@@ -1,0 +1,7 @@
+.myenv/
+venv/
+__pycache__/
+*.pyc
+.env
+node_modules/
+backend/models/random_forest.pkl
